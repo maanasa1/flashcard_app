@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/flashcard_question_textview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:text="What country has the longest coastline?"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:background="#75947f"
+        />
+
+    <TextView
+        android:id="@+id/flashcard_answer_textview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:text="Canada"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:background="#b8f1c3"
+        />
+</RelativeLayout>
