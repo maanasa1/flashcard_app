@@ -3,25 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/green_243">
 
     <TextView
         android:id="@+id/flashcard_question_textview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
         android:text="What country has the longest coastline?"
         android:gravity="center"
         android:textSize="40sp"
-        android:background="#75947f"
+        android:color="@color/dark_purple"
+        android:background="@drawable/flashcard_question_background"
+        android:elevation="20dp"
         />
 
     <TextView
         android:id="@+id/flashcard_answer_textview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
         android:text="Canada"
         android:gravity="center"
         android:textSize="40sp"
-        android:background="#b8f1c3"
+        android:color="@color/dark_purple"
+        android:background="@drawable/flashcard_answer_background"
+        android:elevation="20dp"
         />
+
+    <ImageView
+        android:id="@+id/add_flashcard_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
+        android:src="@drawable/add_flashcard_icon"/>
+
 </RelativeLayout>
