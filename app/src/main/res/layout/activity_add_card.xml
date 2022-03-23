@@ -7,22 +7,22 @@
     android:background="@color/green_243">
 
     <EditText
-        android:id="@+id/flashcard_question_edittext"
+        android:id="@+id/flashcardQuestionEditText"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_margin="20dp"
         android:hint="Enter the question here"/>
 
     <EditText
-        android:id="@+id/flashcard_answer_edittext"
+        android:id="@+id/flashcardAnswerEditText"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_margin="20dp"
-        android:layout_below="@id/flashcard_question_edittext"
+        android:layout_below="@id/flashcardQuestionEditText"
         android:hint="Enter the answer here"/>
 
     <ImageView
-        android:id="@+id/cancel_button"
+        android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -31,7 +31,7 @@
         android:src="@drawable/cancel_icon"/>
 
     <ImageView
-        android:id="@+id/save_button"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

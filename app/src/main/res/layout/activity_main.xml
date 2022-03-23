@@ -7,7 +7,7 @@
     android:background="@color/green_243">
 
     <TextView
-        android:id="@+id/flashcard_question_textview"
+        android:id="@+id/flashcardQuestionTextview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginHorizontal="10dp"
@@ -21,7 +21,7 @@
         />
 
     <TextView
-        android:id="@+id/flashcard_answer_textview"
+        android:id="@+id/flashcardAnswerTextview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginHorizontal="10dp"
@@ -41,6 +41,24 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="15dp"
-        android:src="@drawable/add_flashcard_icon"/>
+        android:src="@drawable/add_icon"/>
+
+    <ImageView
+        android:id="@+id/edit_flashcard_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="15dp"
+        android:src="@drawable/edit_icon"/>
+
+    <ImageView
+        android:id="@+id/next_flashcard_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="15dp"
+        android:src="@drawable/next_icon" />
 
 </RelativeLayout>
