@@ -2,7 +2,7 @@
 
 ## App Walk-though
 
-<img src="https://user-images.githubusercontent.com/83052527/160245848-03d7fd72-3757-4292-b14f-54c6dec71c9d.gif" width=200><br>
+<img src="https://user-images.githubusercontent.com/83052527/160246206-4310a597-96a9-44f3-b0c0-e9c36494f8fa.gif" width=200><br>
 
 ## Required
 
