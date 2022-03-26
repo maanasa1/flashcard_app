@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +20,21 @@ public class MainActivity extends AppCompatActivity {
     TextView flashcardAnswer;
     FlashcardDatabase flashcardDatabase;
     List<Flashcard> allFlashcards;
-    int cardIndex = 0;
+    int prevIndex = -10;
+    int currIndex;
+
+    public int getRandomNumber(int minNumber, int maxNumber) {
+        if(maxNumber == 0) {
+            return minNumber;
+        }
+        Random rand = new Random();
+        currIndex = rand.nextInt((maxNumber - minNumber) + 1) + minNumber;
+        while(currIndex == prevIndex){
+            currIndex = rand.nextInt((maxNumber - minNumber) + 1) + minNumber;
+        }
+        prevIndex = currIndex;
+        return currIndex;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         addFlashcard.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
             startActivityForResult(intent, 100);
-            cardIndex--;
         });
 
         flashcardDatabase = new FlashcardDatabase(getApplicationContext());
@@ -62,14 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            if (cardIndex >= allFlashcards.size() - 1 || allFlashcards.size() == 1) {
-                Snackbar.make(view, "You've reached the end of the cards! Going back to the start",
-                        Snackbar.LENGTH_SHORT).show();
-                cardIndex = 0; //reset index so that user can go back to the beginning of the cards
-            }
-
             allFlashcards = flashcardDatabase.getAllCards();
-            Flashcard currentCard = allFlashcards.get(cardIndex);
+            Flashcard currentCard = allFlashcards.get(getRandomNumber(0, allFlashcards.size() - 1));
             flashcardQuestion.setText(currentCard.getQuestion());
             flashcardAnswer.setText(currentCard.getAnswer());
 
@@ -77,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
                 flashcardAnswer.setVisibility(View.INVISIBLE);
                 flashcardQuestion.setVisibility(View.VISIBLE);
             }
-            cardIndex++;
         });
 
         findViewById(R.id.delete_flashcard_button).setOnClickListener(new View.OnClickListener() {
@@ -85,10 +92,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 flashcardDatabase.deleteCard(((TextView) findViewById(R.id.flashcardQuestionTextview)).getText().toString());
                 allFlashcards = flashcardDatabase.getAllCards();
-                if(cardIndex != 0) {
-                    cardIndex--;
-                }
-                Flashcard currentCard = allFlashcards.get(cardIndex);
+
+                Flashcard currentCard = allFlashcards.get(getRandomNumber(0, allFlashcards.size() - 1));
                 flashcardQuestion.setText(currentCard.getQuestion());
                 flashcardAnswer.setText(currentCard.getAnswer());
             }
