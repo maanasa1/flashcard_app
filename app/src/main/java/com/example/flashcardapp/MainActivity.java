@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 flashcardDatabase.deleteCard(((TextView) findViewById(R.id.flashcardQuestionTextview)).getText().toString());
                 allFlashcards = flashcardDatabase.getAllCards();
-
                 Flashcard currentCard = allFlashcards.get(getRandomNumber(0, allFlashcards.size() - 1));
                 flashcardQuestion.setText(currentCard.getQuestion());
                 flashcardAnswer.setText(currentCard.getAnswer());
