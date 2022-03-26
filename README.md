@@ -2,7 +2,7 @@
 
 ## App Walk-though
 
-<img src="https://user-images.githubusercontent.com/83052527/160224588-a1e35792-24c3-477e-9257-237bbde57551.gif" width=200><br>
+<img src="https://user-images.githubusercontent.com/83052527/160245848-03d7fd72-3757-4292-b14f-54c6dec71c9d.gif" width=200><br>
 
 ## Required
 
@@ -14,3 +14,4 @@
 - [x] Flashcards are shown in random order instead of the order they were created in
 - [ ] User can edit a card and see the edit saved when they browse through their deck of cards
 - [ ] User can create flashcards with multiple answers and be able to browse through cards with multiple choice answers shown
+
