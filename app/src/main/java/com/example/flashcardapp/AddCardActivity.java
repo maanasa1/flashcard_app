@@ -11,20 +11,19 @@ import android.view.View;
 import android.widget.EditText;
 
 public class AddCardActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
 
-        ImageView cancel_button = findViewById(R.id.cancelButton);
-        ImageView save_button = findViewById(R.id.saveButton);
+        ImageView cancelButton = findViewById(R.id.cancelButton);
+        ImageView saveButton = findViewById(R.id.saveButton);
 
+        cancelButton.setOnClickListener(view -> {
+            finish();
+        });
 
-        cancel_button.setOnClickListener(view -> finish());
-
-        save_button.setOnClickListener(view -> {
+        saveButton.setOnClickListener(view -> {
             Intent data = new Intent();
             String input_question = ((EditText) findViewById(R.id.flashcardQuestionEditText)).getText().toString();
             String input_answer = ((EditText) findViewById(R.id.flashcardAnswerEditText)).getText().toString();

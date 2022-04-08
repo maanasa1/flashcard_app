@@ -9,10 +9,14 @@
         <entry key="..\:/Users/Maana/AndroidStudioProjects/FlashcardApp/app/src/main/res/drawable/card_background.xml" value="0.2295" />
         <entry key="..\:/Users/Maana/AndroidStudioProjects/FlashcardApp/app/src/main/res/drawable/flashcard_option_background.xml" value="0.2295" />
         <entry key="..\:/Users/Maana/AndroidStudioProjects/FlashcardApp/app/src/main/res/drawable/flashcard_question_background.xml" value="0.2295" />
+        <entry key="..\:/Users/Maana/AndroidStudioProjects/FlashcardApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1555" />
+        <entry key="..\:/Users/Maana/AndroidStudioProjects/FlashcardApp/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1555" />
         <entry key="..\:/Users/Maana/AndroidStudioProjects/FlashcardApp/app/src/main/res/drawable/invisible_eye.xml" value="0.2295" />
         <entry key="..\:/Users/Maana/AndroidStudioProjects/FlashcardApp/app/src/main/res/drawable/states_button.xml" value="0.1605" />
         <entry key="..\:/Users/Maana/AndroidStudioProjects/FlashcardApp/app/src/main/res/layout/activity_add_card.xml" value="0.29846014492753625" />
         <entry key="..\:/Users/Maana/AndroidStudioProjects/FlashcardApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Maana/AndroidStudioProjects/FlashcardApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1555" />
+        <entry key="..\:/Users/Maana/AndroidStudioProjects/FlashcardApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
   </component>

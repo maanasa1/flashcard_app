@@ -1,9 +1,4 @@
 <resources>
-    <string name="app_name">Flashcard App</string>
+    <string name="app_name">Flashcards</string>
     <string name="flashcard_question">flashcard question</string>
-    <string name="what_day_is_it">What day is it?</string>
-    <string name="saturday">Saturday</string>
-    <string name="what_country_has_the_longest_river">What country has the longest river?</string>
-    <string name="what_country_has_the_longest_coastline">what_country_has_the_longest_coastline?</string>
-    <string name="canada">Canada</string>
 </resources>

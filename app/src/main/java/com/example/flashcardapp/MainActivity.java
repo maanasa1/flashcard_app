@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.animation.Animator;
 
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 import java.util.Random;
@@ -47,8 +50,20 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.edit_flashcard_button).setVisibility(View.INVISIBLE);
 
         flashcardQuestion.setOnClickListener(view -> {
+            // get the center for the clipping circle
+            int cx = flashcardAnswer.getWidth() / 2;
+            int cy = flashcardAnswer.getHeight() / 2;
+
+            // get the final radius for the clipping circle
+            float finalRadius = (float) Math.hypot(cx, cy);
+
+            // create the animator for this view (the start radius is zero)
+            Animator anim = ViewAnimationUtils.createCircularReveal(flashcardAnswer, cx, cy, 0f, finalRadius);
             flashcardAnswer.setVisibility(View.VISIBLE);
             flashcardQuestion.setVisibility(View.INVISIBLE);
+
+            anim.setDuration(1000);
+            anim.start();
         });
 
         flashcardAnswer.setOnClickListener(view -> {
@@ -60,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         addFlashcard.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
             startActivityForResult(intent, 100);
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
 
         flashcardDatabase = new FlashcardDatabase(getApplicationContext());
@@ -76,26 +92,45 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
+            final Animation leftOutAnim = AnimationUtils.loadAnimation(view.getContext(), R.anim.left_out);
+            final Animation rightInAnim = AnimationUtils.loadAnimation(view.getContext(), R.anim.right_in);
+
+            leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    // this method is called when the animation first starts
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    // this method is called when the animation is finished playing
+                    flashcardQuestion.startAnimation(rightInAnim);
+
+                    allFlashcards = flashcardDatabase.getAllCards();
+                    Flashcard currentCard = allFlashcards.get(getRandomNumber(0, allFlashcards.size() - 1));
+                    flashcardQuestion.setText(currentCard.getQuestion());
+                    flashcardAnswer.setText(currentCard.getAnswer());
+
+                    if(flashcardAnswer.getVisibility() == View.VISIBLE){
+                        flashcardAnswer.setVisibility(View.INVISIBLE);
+                        flashcardQuestion.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                    // we don't need to worry about this method
+                }
+            });
+            flashcardQuestion.startAnimation(leftOutAnim);
+        });
+
+        findViewById(R.id.delete_flashcard_button).setOnClickListener((View v) -> {
+            flashcardDatabase.deleteCard(((TextView) findViewById(R.id.flashcardQuestionTextview)).getText().toString());
             allFlashcards = flashcardDatabase.getAllCards();
             Flashcard currentCard = allFlashcards.get(getRandomNumber(0, allFlashcards.size() - 1));
             flashcardQuestion.setText(currentCard.getQuestion());
             flashcardAnswer.setText(currentCard.getAnswer());
-
-            if(flashcardAnswer.getVisibility() == View.VISIBLE){
-                flashcardAnswer.setVisibility(View.INVISIBLE);
-                flashcardQuestion.setVisibility(View.VISIBLE);
-            }
-        });
-
-        findViewById(R.id.delete_flashcard_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flashcardDatabase.deleteCard(((TextView) findViewById(R.id.flashcardQuestionTextview)).getText().toString());
-                allFlashcards = flashcardDatabase.getAllCards();
-                Flashcard currentCard = allFlashcards.get(getRandomNumber(0, allFlashcards.size() - 1));
-                flashcardQuestion.setText(currentCard.getQuestion());
-                flashcardAnswer.setText(currentCard.getAnswer());
-            }
         });
 
     }
