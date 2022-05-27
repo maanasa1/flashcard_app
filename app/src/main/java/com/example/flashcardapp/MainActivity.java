@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     List<Flashcard> allFlashcards;
     int prevIndex = -10;
     int currIndex;
+    final int ADD_CARD_REQUEST_CODE = 100;
+    final int EDIT_CARD_REQUEST_CODE = 150;
 
     public int getRandomNumber(int minNumber, int maxNumber) {
         if(maxNumber == 0) {
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         flashcardQuestion = findViewById(R.id.flashcardQuestionTextview);
         flashcardAnswer = findViewById(R.id.flashcardAnswerTextview);
         flashcardAnswer.setVisibility(View.INVISIBLE);
-        findViewById(R.id.edit_flashcard_button).setVisibility(View.INVISIBLE);
 
         flashcardQuestion.setOnClickListener(view -> {
             // get the center for the clipping circle
@@ -74,7 +75,20 @@ public class MainActivity extends AppCompatActivity {
         ImageView addFlashcard = findViewById(R.id.add_flashcard_button);
         addFlashcard.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
-            startActivityForResult(intent, 100);
+            startActivityForResult(intent, ADD_CARD_REQUEST_CODE);
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        });
+        
+        editFlashcard.setOnClickListener(view -> {
+            Intent cardToEdit = new Intent(MainActivity.this, AddCardActivity.class);
+
+            String questionToEdit = flashcardQuestion.getText().toString();
+            String answerToEdit = flashcardAnswer.getText().toString();
+
+            cardToEdit.putExtra("questionToEdit", questionToEdit);
+            cardToEdit.putExtra("answerToEdit", answerToEdit);
+
+            startActivityForResult(cardToEdit, EDIT_CARD_REQUEST_CODE);
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
 
@@ -137,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onActivityResult ( int requestCode, int resultCode, @Nullable Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
-            if (requestCode == 100) {
+            if (requestCode == ADD_CARD_REQUEST_CODE && resultCode == RESULT_OK) {
                 if (data != null) { //null check
                     String questionString = data.getExtras().getString("QUESTION KEY");
                     String answerString = data.getExtras().getString("ANSWER KEY");
@@ -146,6 +160,19 @@ public class MainActivity extends AppCompatActivity {
 
                     Flashcard flashcard = (new Flashcard(questionString, answerString));
                     flashcardDatabase.insertCard(flashcard);
+                    allFlashcards = flashcardDatabase.getAllCards();
+                }
+            }
+            
+            if(requestCode == EDIT_CARD_REQUEST_CODE && resultCode == RESULT_OK){
+                if (data != null) { //null check
+                    String questionString = data.getExtras().getString("QUESTION KEY");
+                    String answerString = data.getExtras().getString("ANSWER KEY");
+                    flashcardQuestion.setText(questionString);
+                    flashcardAnswer.setText(answerString);
+
+                    Flashcard flashcard = (new Flashcard(questionString, answerString));
+                    flashcardDatabase.updateCard(flashcard);
                     allFlashcards = flashcardDatabase.getAllCards();
                 }
             }
