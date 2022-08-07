@@ -1,5 +1,5 @@
 ## Flashcard App
-This project was made dueing the course of CodePath's Intro to Mobile course.
+This project was made over the course of CodePath's Intro to Mobile course.
 
 
 ## Lab 4: App Walk-through
